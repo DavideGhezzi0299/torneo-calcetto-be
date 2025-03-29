@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "torneo-calcetto-be", "torneo-calcetto-be\torneo-calcetto-be.csproj", "{840D4DD9-934B-4B94-A713-B610832A1377}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DDF4FBB6-1CC5-4E49-9530-3CDCDCFCD271} = {DDF4FBB6-1CC5-4E49-9530-3CDCDCFCD271}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "torneo-calcetto.EF", "torneo-calcetto.EF\torneo-calcetto.EF.csproj", "{DDF4FBB6-1CC5-4E49-9530-3CDCDCFCD271}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{840D4DD9-934B-4B94-A713-B610832A1377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{840D4DD9-934B-4B94-A713-B610832A1377}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{840D4DD9-934B-4B94-A713-B610832A1377}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{840D4DD9-934B-4B94-A713-B610832A1377}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDF4FBB6-1CC5-4E49-9530-3CDCDCFCD271}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDF4FBB6-1CC5-4E49-9530-3CDCDCFCD271}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDF4FBB6-1CC5-4E49-9530-3CDCDCFCD271}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDF4FBB6-1CC5-4E49-9530-3CDCDCFCD271}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D1F635A2-64BE-4CEF-A99B-74D4B88457D5}
+	EndGlobalSection
+EndGlobal
