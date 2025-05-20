@@ -16,9 +16,16 @@ namespace torneo_calcetto.EF.Models
         public DateTime DataCreazione { get; set; }
         public int FkIdUtenteCreatore { get; set; }
         public Utente UtenteNavigation { get; set; }
-        
+        public TipoTorneo TipoTorneo { get; set; }
+        public IEnumerable<Girone> Gironi { get; set; }
+        public int NumeroPartecipanti { get; set; }
         public Torneo() { }
 
+    }
 
+    public enum TipoTorneo
+    {
+        GironeUnico = 0,
+        GironiMultipli = 1
     }
 }

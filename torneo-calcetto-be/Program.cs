@@ -34,7 +34,7 @@ builder.Services.AddDbContext<TorneoCalcettoContext>(options =>
 
 builder.Services.AddTransient<PartiteRepository>();
 builder.Services.AddTransient<SquadraRepository>();
-
+builder.Services.AddTransient<TorneoRepository>();
 
 var app = builder.Build();
 

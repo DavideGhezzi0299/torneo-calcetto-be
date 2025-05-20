@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using torneo_calcetto.EF.Context;
 
@@ -11,9 +12,11 @@ using torneo_calcetto.EF.Context;
 namespace torneo_calcetto.EF.Migrations
 {
     [DbContext(typeof(TorneoCalcettoContext))]
-    partial class TorneoCalcettoContextModelSnapshot : ModelSnapshot
+    [Migration("20250430155401_gironi")]
+    partial class gironi
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,8 +38,6 @@ namespace torneo_calcetto.EF.Migrations
 
                     b.HasKey("IdPk");
 
-                    b.HasIndex("FkIdTorneo");
-
                     b.ToTable("Gironi");
                 });
 
@@ -54,10 +55,10 @@ namespace torneo_calcetto.EF.Migrations
                     b.Property<bool>("FaseEliminatoria")
                         .HasColumnType("bit");
 
-                    b.Property<int>("FkIdGirone")
+                    b.Property<int>("FkIdSquadraCasa")
                         .HasColumnType("int");
 
-                    b.Property<int>("FkIdSquadraCasa")
+                    b.Property<int>("FkIdTorneo")
                         .HasColumnType("int");
 
                     b.Property<int>("FkIdTrasferta")
@@ -81,16 +82,19 @@ namespace torneo_calcetto.EF.Migrations
                     b.Property<int>("TipoPartita")
                         .HasColumnType("int");
 
+                    b.Property<int>("TorneoNavigationIdPk")
+                        .HasColumnType("int");
+
                     b.Property<string>("Vincitore")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdPk");
 
-                    b.HasIndex("FkIdGirone");
-
                     b.HasIndex("FkIdSquadraCasa");
 
                     b.HasIndex("FkIdTrasferta");
+
+                    b.HasIndex("TorneoNavigationIdPk");
 
                     b.ToTable("Partite");
                 });
@@ -166,12 +170,6 @@ namespace torneo_calcetto.EF.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("NumeroPartecipanti")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TipoTorneo")
-                        .HasColumnType("int");
-
                     b.Property<int>("UtenteNavigationIdPk")
                         .HasColumnType("int");
 
@@ -206,25 +204,8 @@ namespace torneo_calcetto.EF.Migrations
                     b.ToTable("Utenti");
                 });
 
-            modelBuilder.Entity("torneo_calcetto.EF.Models.Girone", b =>
-                {
-                    b.HasOne("torneo_calcetto.EF.Models.Torneo", "TorneoNavigation")
-                        .WithMany("Gironi")
-                        .HasForeignKey("FkIdTorneo")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("TorneoNavigation");
-                });
-
             modelBuilder.Entity("torneo_calcetto.EF.Models.Partita", b =>
                 {
-                    b.HasOne("torneo_calcetto.EF.Models.Girone", "GironeNavigation")
-                        .WithMany("Partite")
-                        .HasForeignKey("FkIdGirone")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("torneo_calcetto.EF.Models.Squadra", "SquadraCasaNavigation")
                         .WithMany()
                         .HasForeignKey("FkIdSquadraCasa")
@@ -237,11 +218,17 @@ namespace torneo_calcetto.EF.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("GironeNavigation");
+                    b.HasOne("torneo_calcetto.EF.Models.Torneo", "TorneoNavigation")
+                        .WithMany()
+                        .HasForeignKey("TorneoNavigationIdPk")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("SquadraCasaNavigation");
 
                     b.Navigation("SquadraTrasfertaNavigation");
+
+                    b.Navigation("TorneoNavigation");
                 });
 
             modelBuilder.Entity("torneo_calcetto.EF.Models.Squadra", b =>
@@ -268,14 +255,7 @@ namespace torneo_calcetto.EF.Migrations
 
             modelBuilder.Entity("torneo_calcetto.EF.Models.Girone", b =>
                 {
-                    b.Navigation("Partite");
-
                     b.Navigation("SquadreNavigation");
-                });
-
-            modelBuilder.Entity("torneo_calcetto.EF.Models.Torneo", b =>
-                {
-                    b.Navigation("Gironi");
                 });
 #pragma warning restore 612, 618
         }

@@ -55,8 +55,8 @@ namespace torneo_calcetto.EF.Models
         public string? Vincitore { get; set; }
         public bool FaseEliminatoria { get; set; }
         public TipoPartita TipoPartita { get; set; }
-        public int FkIdTorneo { get; set; }
-        public Torneo TorneoNavigation { get; set; }
+        public int FkIdGirone { get; set; }
+        public Girone GironeNavigation { get; set; }
         public int FkIdSquadraCasa { get; set; }
         public int FkIdTrasferta { get; set; }
         public virtual Squadra SquadraCasaNavigation { get; set; }

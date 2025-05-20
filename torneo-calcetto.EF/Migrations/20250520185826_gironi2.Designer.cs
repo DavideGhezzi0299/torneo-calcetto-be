@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using torneo_calcetto.EF.Context;
 
@@ -11,9 +12,11 @@ using torneo_calcetto.EF.Context;
 namespace torneo_calcetto.EF.Migrations
 {
     [DbContext(typeof(TorneoCalcettoContext))]
-    partial class TorneoCalcettoContextModelSnapshot : ModelSnapshot
+    [Migration("20250520185826_gironi2")]
+    partial class gironi2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -165,9 +168,6 @@ namespace torneo_calcetto.EF.Migrations
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("NumeroPartecipanti")
-                        .HasColumnType("int");
 
                     b.Property<int>("TipoTorneo")
                         .HasColumnType("int");

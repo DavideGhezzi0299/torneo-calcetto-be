@@ -19,6 +19,7 @@ namespace torneo_calcetto.EF.Context
 
         public DbSet<Torneo> Tornei { get; set; }
         public DbSet<Utente> Utenti { get; set; }
+        public DbSet<Girone> Gironi { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,6 +35,24 @@ namespace torneo_calcetto.EF.Context
                 .HasForeignKey(p => p.FkIdTrasferta)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<Squadra>()
+                .HasOne(p => p.GironeNavigation)
+                .WithMany(g => g.SquadreNavigation)
+                .HasForeignKey(p => p.FkIdGirone)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Partita>()
+                .HasOne(p => p.GironeNavigation)
+                .WithMany(g => g.Partite)
+                .HasForeignKey(p => p.FkIdGirone)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Girone>()
+                .HasOne(g => g.TorneoNavigation)
+                .WithMany(t => t.Gironi)
+                .HasForeignKey(g => g.FkIdTorneo)
+                .OnDelete(DeleteBehavior.Restrict);
+            
             base.OnModelCreating(modelBuilder);
         }
     }

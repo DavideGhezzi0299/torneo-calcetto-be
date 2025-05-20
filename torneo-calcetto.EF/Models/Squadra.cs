@@ -21,7 +21,8 @@ namespace torneo_calcetto.EF.Models
         public int Pareggi { get; set; }
         public int DifferenzaReti { get; set; }
         public Fascia Fascia { get; set; }
-
+        public int FkIdGirone { get; set; }
+        public Girone GironeNavigation { get; set; }
     }
 
     public enum Fascia
