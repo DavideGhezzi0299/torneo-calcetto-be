@@ -37,7 +37,7 @@ namespace torneo_calcetto.EF.Context
 
             modelBuilder.Entity<Squadra>()
                 .HasOne(p => p.GironeNavigation)
-                .WithMany(g => g.SquadreNavigation)
+                .WithMany(g => g.Squadre)
                 .HasForeignKey(p => p.FkIdGirone)
                 .OnDelete(DeleteBehavior.Restrict);
 

@@ -50,7 +50,7 @@ namespace torneo_calcetto_be.Core.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> PrendiTorneòPerId(int id)
+        public async Task<IActionResult> PrendiTorneoPerId(int id)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace torneo_calcetto_be.Core.Controllers
         }
 
         [HttpPatch("{idTorneo}")]
-        public async Task<IActionResult> AggiornaTorneo(int idTorneo, List<Girone> gironi)
+        public async Task<IActionResult> AggiornaTorneo(int idTorneo, List<GironeDto> gironi)
         {
             try
             {

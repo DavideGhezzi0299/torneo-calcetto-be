@@ -59,7 +59,10 @@ namespace torneo_calcetto_be.Core.Repository
         {
             try
             {
-                 var torneo = await _context.Tornei.FirstOrDefaultAsync(x => x.IdPk == idTorneo);
+                 var torneo = await _context.Tornei
+                                        .Include(x =>x.Gironi)
+                                            .ThenInclude(g => g.Squadre)
+                                        .FirstOrDefaultAsync(x => x.IdPk == idTorneo);
                 return torneo;
             }
             catch (Exception ex)
@@ -68,7 +71,7 @@ namespace torneo_calcetto_be.Core.Repository
             }
         }
 
-        public async Task<bool> AggiornaTorneo(int idTorneo, List<Girone> gironi)
+        public async Task<bool> AggiornaTorneo(int idTorneo, List<GironeDto> gironi)
         {
             try
             {
@@ -76,7 +79,12 @@ namespace torneo_calcetto_be.Core.Repository
                 if ( torneo == null )
                     return false;
 
-                await _context.Gironi.AddRangeAsync(gironi);
+                var newGironi = new List<Girone>();
+                foreach ( var girone in gironi)
+                {
+                    newGironi.Add(GironeMapper.GironeDtoToEntity(girone));
+                }
+                await _context.Gironi.AddRangeAsync(newGironi);
                 await _context.SaveChangesAsync();
                 return true;
             }

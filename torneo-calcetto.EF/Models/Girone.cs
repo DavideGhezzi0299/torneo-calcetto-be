@@ -14,7 +14,7 @@ namespace torneo_calcetto.EF.Models
         public int FkIdTorneo { get; set; }
 
         public Torneo TorneoNavigation { get; set; }
-        public ICollection<Squadra> SquadreNavigation { get; set; }
-        public ICollection<Partita> Partite { get; set; }
+        public ICollection<Squadra> Squadre { get; set; } = new List<Squadra>();
+        public ICollection<Partita> Partite { get; set; } = new List<Partita>();
     }
 }
